@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Como Usar IA no TCC Sem Ser Pego pelo Detector (E Sem Comprometer Sua Nota) | Ebook 5 de 8</title>
+  <meta name="description"
+    content="Você usa IA pra organizar ideias, revisar parágrafos e acelerar sua pesquisa — de forma legítima. Mas o medo de o orientador rodar seu texto num detector e te acusar de plágio ainda tira seu sono.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,500;8..60,700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #F7F2E9;
+      --bg2: #EFE6D2;
+      --ink: #25231E;
+      --ink-soft: #655F51;
+      --accent: #2C5C63;
+      --accent-ink: #F3F8F8;
+      --card: #EDE2C9;
+      --line: #DED0AC;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', system-ui, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    .display {
+      font-family: 'Source Serif 4', serif;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+
+    .wrap {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--accent-ink);
+      background: var(--accent);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+
+    header.hero {
+      padding: 110px 0 90px;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .hero-inner {
+      max-width: 760px;
+    }
+
+    .hero h1 {
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1.08;
+      margin: 22px 0 22px;
+    }
+
+    .hero p.lede {
+      font-size: 19px;
+      color: var(--ink-soft);
+      max-width: 640px;
+      margin: 0 0 34px;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .btn {
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+      background: var(--accent);
+      color: var(--accent-ink);
+      font-weight: 700;
+      font-size: 16px;
+      padding: 16px 30px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px -8px rgba(0, 0, 0, .35);
+    }
+
+    .btn:active {
+      transform: translateY(0px) scale(.98);
+    }
+
+    .btn .ripple {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .5);
+      transform: scale(0);
+      animation: ripple .55s linear;
+      pointer-events: none;
+    }
+
+    @keyframes ripple {
+      to {
+        transform: scale(3);
+        opacity: 0;
+      }
+    }
+
+    .price-tag {
+      font-size: 14px;
+      color: var(--ink-soft);
+    }
+
+    .price-tag b {
+      font-size: 22px;
+      color: var(--ink);
+      font-family: 'Source Serif 4', serif;
+    }
+
+    section {
+      padding: 78px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-label {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--ink-soft);
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .pain h2 {
+      font-size: clamp(26px, 3.4vw, 36px);
+      max-width: 680px;
+      margin-bottom: 18px;
+    }
+
+    .pain p {
+      color: var(--ink-soft);
+      font-size: 17px;
+      max-width: 640px;
+    }
+
+    .chapters {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .chapter {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: 20px;
+      padding: 22px 0;
+      border-top: 1px solid var(--line);
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .chapter:first-child {
+      border-top: none;
+    }
+
+    .chapter.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .chapter .num {
+      font-family: 'Source Serif 4', serif;
+      font-size: 22px;
+      color: var(--accent-ink);
+      background: var(--accent);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+
+    .chapter h3 {
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .chapter p {
+      color: var(--ink-soft);
+      font-size: 15px;
+      margin: 0;
+    }
+
+    .bonus {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 34px;
+      margin-top: 36px;
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .bonus .badge {
+      font-size: 28px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .price-box {
+      background: var(--card);
+      border-radius: 20px;
+      padding: 44px;
+      text-align: center;
+    }
+
+    .price-box .old {
+      text-decoration: line-through;
+      color: var(--ink-soft);
+      font-size: 16px;
+    }
+
+    .price-box .new {
+      font-family: 'Source Serif 4', serif;
+      font-size: 48px;
+      margin: 6px 0 22px;
+    }
+
+    .faq-item {
+      border-top: 1px solid var(--line);
+      padding: 20px 0;
+    }
+
+    .faq-item:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .faq-q {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 16px;
+      gap: 16px;
+    }
+
+    .faq-q .plus {
+      transition: transform .3s ease;
+      font-size: 20px;
+      color: var(--accent-ink);
+      flex-shrink: 0;
+    }
+
+    .faq-item.open .plus {
+      transform: rotate(45deg);
+    }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, opacity .35s ease, margin-top .35s ease;
+      opacity: 0;
+      color: var(--ink-soft);
+      font-size: 15px;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 220px;
+      opacity: 1;
+      margin-top: 12px;
+    }
+
+    footer {
+      padding: 50px 0;
+      text-align: center;
+      color: var(--ink-soft);
+      font-size: 13px;
+    }
+
+    .final-cta {
+      text-align: center;
+    }
+
+    .final-cta h2 {
+      font-size: clamp(26px, 3.6vw, 40px);
+      max-width: 600px;
+      margin: 0 auto 16px;
+    }
+
+    @media(max-width:640px) {
+      header.hero {
+        padding: 80px 0 60px
+      }
+
+      section {
+        padding: 56px 0
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="hero">
+    <div class="wrap hero-inner">
+      <span class="eyebrow">Ebook 5 de 8 &middot; Série Acadêmica</span>
+      <h1>Como Usar IA no TCC Sem Ser Pego pelo Detector (E Sem Comprometer Sua Nota)</h1>
+      <p class="lede">Você usa IA pra organizar ideias, revisar parágrafos e acelerar sua pesquisa — de forma legítima.
+        Mas o medo de o orientador rodar seu texto num detector e te acusar de plágio ainda tira seu sono.</p>
+      <div class="cta-row">
+        <a class="btn" href="[LINK_KIWIFY_EBOOK_5]">Quero o ebook agora</a>
+        <span class="price-tag">de <span class="old">R$ 39,90</span> por <b>R$ 23,90</b></span>
+      </div>
+    </div>
+  </header>
+
+  <section class="pain">
+    <div class="wrap">
+      <div class="section-label">O problema</div>
+      <h2 class="reveal">Detectores de IA erram — e você pode estar em risco mesmo sem ter colado.</h2>
+      <p class="reveal">A escrita acadêmica formal ativa os mesmos sinais estatísticos que um texto gerado por IA.
+        Entender como os detectores funcionam de verdade é a diferença entre defender seu trabalho com confiança ou
+        viver com medo dele.</p>
+    </div>
+  </section>
+
+  <section class="structure">
+    <div class="wrap">
+      <div class="section-label">O que você vai encontrar</div>
+      <h2 class="reveal" style="font-size:clamp(24px,3vw,32px); margin-bottom:30px;">5 capítulos + bônus pra proteger
+        sua autoria e sua nota</h2>
+      <div class="chapters">
+        <div class="chapter reveal">
+          <div class="num">1</div>
+          <div>
+            <h3>Como os detectores de IA realmente funcionam</h3>
+            <p>E por que erram com frequência inquietante — inclusive com textos 100% humanos.</p>
+          </div>
+        </div>
+        <div class="chapter reveal">
+          <div class="num">2</div>
+          <div>
+            <h3>Onde usar IA sem risco x onde é osso</h3>
+            <p>O mapa claro entre o auxiliar legítimo e o insubstituível.</p>
+          </div>
+        </div>
+        <div class="chapter reveal">
+          <div class="num">3</div>
+          <div>
+            <h3>Como manter sua voz no texto</h3>
+            <p>Pra não soar "com cara de IA", mesmo escrevendo tudo você mesmo.</p>
+          </div>
+        </div>
+        <div class="chapter reveal">
+          <div class="num">4</div>
+          <div>
+            <h3>Como documentar o uso de IA de forma ética</h3>
+            <p>Se a instituição exigir — e cada vez mais exige.</p>
+          </div>
+        </div>
+        <div class="chapter reveal">
+          <div class="num">5</div>
+          <div>
+            <h3>Erros que fazem um trabalho ser sinalizado mesmo sem IA</h3>
+            <p>Padrões de escrita acadêmica que enganam os detectores.</p>
+          </div>
+        </div>
+      </div>
+      <div class="bonus reveal">
+        <div class="badge">&#127873;</div>
+        <div>
+          <h3 style="margin-bottom:6px;">Bônus</h3>
+          <p style="color:var(--ink-soft); margin:0;">Checklist pré-entrega: rode seu texto em dois detectores antes do
+            orientador.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="price">
+    <div class="wrap">
+      <div class="price-box reveal">
+        <div class="old">R$ 39,90</div>
+        <div class="new">R$ 23,90</div>
+        <a class="btn" href="[LINK_KIWIFY_EBOOK_5]">Comprar agora</a>
+        <p style="margin-top:16px; font-size:13px; color:var(--ink-soft);">Acesso imediato após a confirmação do
+          pagamento.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq">
+    <div class="wrap">
+      <div class="section-label">Perguntas frequentes</div>
+      <h2 class="reveal" style="font-size:clamp(24px,3vw,32px); margin-bottom:10px;">Ainda com dúvida?</h2>
+      <div style="margin-top:24px;">
+        <div class="faq-item">
+          <div class="faq-q"><span>O ebook incentiva usar IA pra escrever o TCC inteiro?</span><span
+              class="plus">+</span></div>
+          <div class="faq-a">Não — o ebook é claro sobre o que é uso auxiliar legítimo e o que compromete sua autoria.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>Funciona pra qualquer curso?</span><span class="plus">+</span></div>
+          <div class="faq-a">Sim, os princípios de detecção, voz autoral e documentação ética valem pra qualquer área.
+          </div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>O ebook é em PDF? Dá pra ler no celular?</span><span class="plus">+</span></div>
+          <div class="faq-a">Sim, é um PDF digital que abre em qualquer dispositivo.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q"><span>Como recebo o ebook depois da compra?</span><span class="plus">+</span></div>
+          <div class="faq-a">O acesso chega por e-mail assim que o pagamento é confirmado.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final-cta">
+    <div class="wrap">
+      <h2 class="reveal">Entregue um TCC que você pode defender parágrafo por parágrafo.</h2>
+      <p class="reveal" style="color:var(--ink-soft); max-width:520px; margin:0 auto 28px;">Comece a se proteger antes
+        da próxima entrega.</p>
+      <a class="btn reveal" href="[LINK_KIWIFY_EBOOK_5]">Quero começar agora &mdash; R$ 23,90</a>
+    </div>
+  </section>
+
+  <footer>
+    Ebook 5 de 8 &middot; Série Série Acadêmica &middot; Recife, PE
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var els = document.querySelectorAll('.reveal, .chapter');
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } });
+      }, { threshold: 0.15 });
+      els.forEach(function (el) { io.observe(el); });
+
+      document.querySelectorAll('.btn').forEach(function (btn) {
+        btn.addEventListener('click', function (e) {
+          var rect = btn.getBoundingClientRect();
+          var ripple = document.createElement('span');
+          ripple.className = 'ripple';
+          ripple.style.left = (e.clientX - rect.left - 10) + 'px';
+          ripple.style.top = (e.clientY - rect.top - 10) + 'px';
+          ripple.style.width = ripple.style.height = '20px';
+          btn.appendChild(ripple);
+          setTimeout(function () { ripple.remove(); }, 550);
+        });
+      });
+
+      document.querySelectorAll('.faq-item').forEach(function (item) {
+        item.querySelector('.faq-q').addEventListener('click', function () {
+          var wasOpen = item.classList.contains('open');
+          document.querySelectorAll('.faq-item.open').forEach(function (o) { o.classList.remove('open'); });
+          if (!wasOpen) { item.classList.add('open'); }
+        });
+      });
+    });
+  </script>
+</body>
+
+</html>
